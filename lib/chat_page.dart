@@ -21,39 +21,56 @@ class _ChatPageState extends State<ChatPage> {
     ChatMessage('Hello, how can I help?', false),
   ];
   var _awaitingResponse = false;
-
+  var isTrigger = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Chat')),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: [
-                ..._messages.map(
-                  (msg) => MessageBubble(
-                    content: msg.content,
-                    isUserMessage: msg.isUserMessage,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                reverse: true, // добавьте reverse: true
+                children: [
+                  ..._messages.reversed.map(
+                        (msg) => MessageBubble(
+                      content: msg.content,
+                      isUserMessage: msg.isUserMessage,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          MessageComposer(
-            onSubmitted: _onSubmitted,
-            awaitingResponse: _awaitingResponse,
-          ),
-        ],
+            MessageComposer(
+              onSubmitted: _onSubmitted,
+              awaitingResponse: _awaitingResponse,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Future<void> _onSubmitted(String message) async {
-    setState(() {
-      _messages.add(ChatMessage(message, true));
-      _awaitingResponse = true;
-    });
+    if(isTrigger){
+      setState(() {
+        _messages.add(ChatMessage(message, true));
+        _awaitingResponse = false;
+      });
+      isTrigger = false;
+    }else {
+      setState(() {
+        _messages.add(ChatMessage(message, true));
+        _awaitingResponse = true;
+      });
+    }
     try {
       final response = await widget.chatApi.completeChat(_messages);
       setState(() {

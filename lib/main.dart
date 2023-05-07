@@ -17,8 +17,8 @@ class ChatApp extends StatelessWidget {
       title: 'ChatGPT Client',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
-          secondary: Colors.lime,
+          seedColor: Color.fromRGBO(51, 72, 210, 1.0),
+          secondary: Color.fromRGBO(255, 216, 0, 1.0),
         ),
       ),
       home: ChatPage(chatApi: chatApi),
