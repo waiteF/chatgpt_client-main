@@ -4,6 +4,7 @@ import 'package:chatgpt_client/widgets/message_bubble.dart';
 import 'package:chatgpt_client/widgets/message_composer.dart';
 import 'package:flutter/material.dart';
 
+// Клас ChatPage який наслідує стан StatefulWidget
 class ChatPage extends StatefulWidget {
   const ChatPage({
     required this.chatApi,
@@ -16,12 +17,14 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
+// Клас _ChatPageState який містить віджет сторінки чату
 class _ChatPageState extends State<ChatPage> {
   final _messages = <ChatMessage>[
     ChatMessage('Hello, how can I help?', false),
   ];
   var _awaitingResponse = false;
   var isTrigger = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             Expanded(
               child: ListView(
-                reverse: true, // добавьте reverse: true
+                reverse: true, // відобразити повідомлення в зворотньому порядку
                 children: [
                   ..._messages.reversed.map(
                         (msg) => MessageBubble(
@@ -58,6 +61,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
+  // Функція, яка оброблює подані користувачем повідомлення
   Future<void> _onSubmitted(String message) async {
     if(isTrigger){
       setState(() {

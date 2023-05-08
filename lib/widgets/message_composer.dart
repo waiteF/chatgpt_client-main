@@ -28,6 +28,8 @@ class MessageComposer extends StatelessWidget {
                       decoration: const InputDecoration(
                         hintText: 'Write your message here...',
                         border: InputBorder.none,
+                        filled: true,
+                        fillColor: Color.fromRGBO(232, 233, 239, 1.0),
                       ),
                     )
                   : Row(

@@ -1,3 +1,4 @@
+// Модель представлення даних (запит, користувач)
 class ChatMessage {
   ChatMessage(this.content, this.isUserMessage);
 

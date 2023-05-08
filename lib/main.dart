@@ -16,6 +16,7 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       title: 'ChatGPT Client',
       theme: ThemeData(
+        // Зміна колярів по RGB
         colorScheme: ColorScheme.fromSeed(
           seedColor: Color.fromRGBO(51, 72, 210, 1.0),
           secondary: Color.fromRGBO(255, 216, 0, 1.0),

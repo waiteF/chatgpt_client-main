@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
+
 class MessageBubble extends StatelessWidget {
   const MessageBubble({
     required this.content,
@@ -8,8 +9,8 @@ class MessageBubble extends StatelessWidget {
     super.key,
   });
 
-  final String content;
-  final bool isUserMessage;
+  final String content; // вміст повідомлення
+  final bool isUserMessage; // чи є це повідомлення від користувача
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MessageBubble extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isUserMessage
+        color: isUserMessage // колір фону залежно від того, хто відправив повідомлення
             ? themeData.colorScheme.primary.withOpacity(0.4)
             : themeData.colorScheme.secondary.withOpacity(0.4),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -30,14 +31,14 @@ class MessageBubble extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  isUserMessage ? 'You' : 'AI',
+                  isUserMessage ? 'You' : 'AI', // показує хто відправив повідомлення
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             const SizedBox(height: 8),
             MarkdownWidget(
-              data: content,
+              data: content, // вміст повідомлення
               shrinkWrap: true,
             ),
           ],
